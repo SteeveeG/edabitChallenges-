@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace PokerHandRankingChallenge;
@@ -8,8 +9,13 @@ public class ControlHand
     private string[] suits;
     private string[] royalFlush;
     private string[] straightflush;
+    private List<string> allcards;
+    private List<int> countCards;
+
     public ControlHand(string[] hand)
     {
+        allcards = new() { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
+        countCards = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         var unsplittedHand = hand;
         face = new string[5];
         suits = new string[5];
@@ -30,6 +36,8 @@ public class ControlHand
 
     public string StartControlHands()
     {
+        CountCards();
+
         if (ControlSameSuit())
         {
             if (ControlRoyalFlush())
@@ -57,28 +65,28 @@ public class ControlHand
         return "Result";
     }
 
-
-    private string ControlRest()
+    private void CountCards()
     {
-        var allcards = new List<string> { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
-        var CountCards = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-
         foreach (var cardFace in face)
         {
-            for (int i = 0; i < allcards.Count; i++)
+            for (var i = 0; i < allcards.Count; i++)
             {
                 if (cardFace == allcards[i])
                 {
-                    CountCards[i]++;
+                    countCards[i]++;
                 }
             }
         }
+    }
 
-        if (CountCards.Contains(2) || CountCards.Contains(3) || CountCards.Contains(4))
+
+    private string ControlRest()
+    {
+        if (countCards.Contains(2) || countCards.Contains(3) || countCards.Contains(4))
         {
-            var countPair = CountCards.Count(i => i == 2);
-            var threeOfAKind = CountCards.Count(i => i == 3) == 1;
-            var fourOfAKind = CountCards.Count(i => i == 4) == 1;
+            var countPair = countCards.Count(i => i == 2);
+            var threeOfAKind = countCards.Count(i => i == 3) == 1;
+            var fourOfAKind = countCards.Count(i => i == 4) == 1;
             var onePair = countPair == 1;
             var twoPair = countPair == 2;
 
@@ -111,14 +119,14 @@ public class ControlHand
         {
             var straight = 0;
             var indexLastCard = -1;
-            for (int i = 0; i < CountCards.Count; i++)
+            for (int i = 0; i < countCards.Count; i++)
             {
-                if (CountCards[i] == 1 && indexLastCard == -1)
+                if (countCards[i] == 1 && indexLastCard == -1)
                 {
                     indexLastCard = i;
                     straight++;
                 }
-                else if (CountCards[i] == 1 && indexLastCard + 1 == i)
+                else if (countCards[i] == 1 && indexLastCard + 1 == i)
                 {
                     straight++;
                     indexLastCard++;
@@ -130,49 +138,37 @@ public class ControlHand
                 return "Straight";
             }
 
-            for (int i = CountCards.Count - 1; i >= 0; i--)
+            for (int i = countCards.Count - 1; i >= 0; i--)
             {
-                if (CountCards[i] == 1)
+                if (countCards[i] == 1)
                 {
                     return $"HighCard  Card: {allcards[i]}";
                 }
             }
         }
+
         return "No Combinaiton";
     }
 
     private bool ControlStraightFlush()
     {
-        var firstindex = 0;
-        for (var i = 0; i < 5; i++)
+        var startIndex = -1;
+        for (var i = 0; i < 13; i++)
         {
-            if (i == 0)
+            if (countCards[i] == 1)
             {
-                for (var j = 0; j < straightflush.Length; j++)
-                {
-                    if (face[i] == straightflush[j])
-                    {
-                        firstindex = j;
-                        if (face[1] != straightflush[firstindex + 1])
-                        {
-                            return false;
-                        }
-
-                        break;
-                    }
-                }
+                startIndex = i;
+                break;
             }
-
-            if (face[i] == straightflush[firstindex])
-            {
-                firstindex++;
-            }
-            else
+        }
+        for (int i = startIndex; i < startIndex + 4; i++)
+        {
+            if (countCards[i] != 1)
             {
                 return false;
             }
         }
-
+ 
         return true;
     }
 
@@ -189,14 +185,13 @@ public class ControlHand
     private bool ControlRoyalFlush()
     {
         var counter = 0;
-        for (var i = 0; i < 5; i++)
+        for (int i = 13 - 1; i >= 8; i--)
         {
-            if (face[i] == royalFlush[i])
+            if (countCards[i] == 1)
             {
                 counter++;
             }
         }
-
         return counter == 5;
     }
 }
