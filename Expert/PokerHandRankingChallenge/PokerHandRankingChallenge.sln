@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerHandRankingChallenge", "PokerHandRankingChallenge\PokerHandRankingChallenge.csproj", "{A63501A4-FD58-4A94-BD98-3C77DA2C2076}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A63501A4-FD58-4A94-BD98-3C77DA2C2076}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A63501A4-FD58-4A94-BD98-3C77DA2C2076}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A63501A4-FD58-4A94-BD98-3C77DA2C2076}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A63501A4-FD58-4A94-BD98-3C77DA2C2076}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
