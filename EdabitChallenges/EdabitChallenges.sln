@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishToPigLatinTranslator
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VeryHard", "VeryHard", "{5B191793-C6E6-406E-B0F1-AD26F896153A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordValidation", "PasswordValidation\PasswordValidation.csproj", "{C30FD1B7-64E8-4EC5-AB36-70905DEDB3B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,9 +24,14 @@ Global
 		{835AD921-B95A-4225-983C-0A2B4C3907B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{835AD921-B95A-4225-983C-0A2B4C3907B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{835AD921-B95A-4225-983C-0A2B4C3907B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C30FD1B7-64E8-4EC5-AB36-70905DEDB3B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C30FD1B7-64E8-4EC5-AB36-70905DEDB3B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C30FD1B7-64E8-4EC5-AB36-70905DEDB3B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C30FD1B7-64E8-4EC5-AB36-70905DEDB3B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EBC5BCD4-1862-4D97-8624-174B35FE0BDF} = {15E53BA5-8882-4584-B2B3-A944FC0B7770}
 		{835AD921-B95A-4225-983C-0A2B4C3907B7} = {15E53BA5-8882-4584-B2B3-A944FC0B7770}
+		{C30FD1B7-64E8-4EC5-AB36-70905DEDB3B1} = {5B191793-C6E6-406E-B0F1-AD26F896153A}
 	EndGlobalSection
 EndGlobal
